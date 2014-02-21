@@ -29,7 +29,7 @@ interact with the hardware and manage threads and memory.
 <b>Universal Extensible Firmware Interface</b> successor to the BIOS and contains disk blocks. The files that are loaded from the EFI are often bootloaders for individual operating systems.
 
 ##Operating Systems: essential concepts
-<b>A program that loads and runs other programs, providing programs with a level of abstraction so they dont have to deal with the details of accessing hardware. 
+<b>Operating System</b> : A program that loads and runs other programs, providing programs with a level of abstraction so they dont have to deal with the details of accessing hardware. 
     - Manages access to resources such as the CPU via the scheduler, memory via the memory management unit, persistent files via the file system, communication network via sockets and IP drivers, and devices via device drivers
     
 <b>Kernel Mode</b> : The processor and operating system run in this mode. In this mode the processor can execture priveldged instructions that define interrupt vecotrs enable interrupts interact with IO ports set timers and manipulate memory mapings
