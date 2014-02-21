@@ -19,13 +19,18 @@ interact with the hardware and manage threads and memory.
 
 ##Operating System Booting
 <b>Boot Loader</b> : a small program that is run at boot time that loads the operating system.
+
 <b>Multi-Stage Boot Loader</b> Starts off by loading the simple boot loader, then loads a more complex boot loader which then loads the operating system. 
+
 <b>Chain Loading</b> Is the cascading process by which the multi stage boot loader follows.
 - In a classic PC the computer starts running code in the systems BIOS on startup. 
 - Then the BIOS performs a power on test identifies some hardware and then loads the first block of the disk
+
 <b>Master Boot Record</b> The first block of the disk loaded by the BIOS
     - Contains a table identifiing disk partitions and code that will load the Volume Boot Record, which is the first disk block of the designated boot partition.
+
 <b>Volume Boot Record</b> : First disk block of the designated disk partition. Contains code to read successive consecutive blocks to load additional blocks that comprise the second stage boot loader. 
+
 <b>Universal Extensible Firmware Interface</b> successor to the BIOS and contains disk blocks. The files that are loaded from the EFI are often bootloaders for individual operating systems.
 
 ##Operating Systems: essential concepts
