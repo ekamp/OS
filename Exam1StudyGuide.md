@@ -40,6 +40,7 @@ interact with the hardware and manage threads and memory.
 <b>Kernel Mode</b> : The processor and operating system run in this mode. In this mode the processor can execture priveldged instructions that define interrupt vecotrs enable interrupts interact with IO ports set timers and manipulate memory mapings
 
 <b>User Mode</b> : Other programs run the with processor in this mode. They do not have provledge to execute certain instructions. 
+
     - A processor running in user mode can switch to kernal mode by executing a trap instruction AKA a software interrupt.
     - Alternatively other OSes offer SYSCALL which is faster since it does not read the branch address from the interrupt vector table stored in mem. It keeps the address in a CPU register.
     - Either of these methods do the following :
