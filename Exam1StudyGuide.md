@@ -92,5 +92,23 @@ A Process may be in one of the following states :
 - Ready : the process is not currently executing code but is ready to do so if the OS would give it a chance
 - Blocked : the process is wating for some event to occur and will not ready  to executre instructions until the event is ready
 
+<b>Process Scheduler</b> Responsible for moving processes between the ready and running states. 
 
+<b>Preemptive Multitasking</b> An OS that can save the context of a running program and restore the context of a ready program to give it a chance to run. 
+
+<b>Non-Preemptive or Cooperative</b> System that allows programs to run until they terminate or blocks I/O.
+- An OS keeps track of all prcesses via a list. Each element is a pointer to a data structure containing information about the process. 
+
+<b>Process Control Block</b> Data structure that contains information about one process.
+
+<b>Process ID</b> Each process is uniquely identified with this.
+
+<b>Basic Manipulations of the POSIX system include :
+
+- Fork : 
+- Execv :
+- Exit :
+- Wait :
+- Signal :
+- Kill :
 
