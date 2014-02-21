@@ -49,3 +49,48 @@ interact with the hardware and manage threads and memory.
         - Transfer execution to a perdefined address for that trap
     - To return to user mode a <b>Return from exeption</b> instruction is launched
     
+<b>System Calls</b> : Programs interact with the operating system with such calls. System call using a trap to switch control of operating system code from kernal mode. The request is either dealt with immediately or put in a waiting state and dealt with later. If the process is considered to be running for too long the process is stopped and another process will take place. 
+
+<b>Programmable Interval Timer</b> In order to allow the operating system to get control at regular intervals. This generates periotic hardware interrupts. When the interrupt is generated control is transfered to an interrupt handler in the kernal and the process is switched to kernal mode. 
+
+<b>Mode switch</b> The result of an interrupt or trap, where execution is transfered from user mode to kernal mode. 
+
+- If the operating system decides that it is time to replace the currently executing process, it will save the process context and run an existing saved process's context. 
+
+<b>Context</b> Includes the values of a processor's registers counter stack pointer and memory mappings. 
+
+<b>Context Switch</b> Saving the context of one process and restoring that of another.
+
+###OS System devices
+<bCharacter Devices</b> Any device whose data that can be thought of as a byte stream. Keyboard input , mouse, camera
+
+<b>Block Devices</b> Any device that has a persistent storage that is randomly addressable and read or witten in fixed size chunks or blocks. These devices include flash and disk memory. Because the data is persistent it can be cached by the OS so that future request for the cached content happens faster. This cache is called a <b>Buffer Cache<b>. Any device that can be used to hold a file system is a block device.
+
+<b>Network Devices</b> Packet based communication networks
+
+<b>Memory Mapped I/O</b> Devices that can be controlled by mapping their control and data registers into memory. 
+- The processor can get device status notifications via hardware interrupts or by periodically polling the hardware. 
+
+<b>Programmed I/O</b> Data can be transferred between the device and system via software that wirtes/reads the devices memory.
+
+<b>Direct Memory Access</b> The device may have access to the systems memory bus and use this to transfer data to and from the system without using the processor. 
+
+##Processes
+<b>Process</b> A program in execution. It comprises the state of the processors registers and the memory map for the program.
+
+<b>Memory Map</b> Contains serval regions that the OS allocated and initialized when the process was first created.
+Such regions are : 
+
+- Text : machine instructions
+- Data : initialized static and global data
+- BSS Uninitialized static data that was defined in the program
+- Heap : dynamically allocated memory
+- Stack : the call stack which holds not just return addresses but also local variables temp data and save registers
+
+A Process may be in one of the following states :
+- Running : the process is currently executing code on the CPU
+- Ready : the process is not currently executing code but is ready to do so if the OS would give it a chance
+- Blocked : the process is wating for some event to occur and will not ready  to executre instructions until the event is ready
+
+
+
