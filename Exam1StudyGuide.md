@@ -105,10 +105,32 @@ A Process may be in one of the following states :
 
 <b>Basic Manipulations of the POSIX system include :
 
-- Fork : 
-- Execv :
-- Exit :
-- Wait :
-- Signal :
-- Kill :
+- Fork : Creates a new process that is the copy of the parent and runs the same program however does not share the same memory 
+- Execv : Loads a new process from the file system to override the current process. Typically run after fork
+- Exit : Tells the OS to exit the current process
+- Wait : Allows a parent to wait for and detect the termination of a child process
+- Signal : Allows a process to detect signals which include software exceptions user defined signals and death of child signals
+- Kill : Sends a signal to a specified process. Can be detected with the "signal" command
+
+##Threads
+
+<b>Thread</b> : Can be thought of as the part of a process that is related to the execution flow
+
+<b>Multithreaded</b> : A process with more than one thread. However now the PCB now keeps track of the threads for that process. 
+
+<b>Thread Control Block</b> : Thread specific information such as registers, program counters, stack pointers, priority.
+(Even though each thread gets its own stack the stacks all reside in memory accessable to all threads)
+
+<b>Kernal Level Threads</b> : Threads implemented, and managed by the OS.
+
+<b>Thread Library</b> : Save and restore registers and manager switching stacks amoung threads. May ask the OS forperiotic software interrupts to enable it to preempt threads. 
+
+<b>User Level Threads</b> : All threads map to a single kernal or single threaded process. <b>Disadvantage</b> with this is that if one user level thread blocks then no other user level threads can run. Many OS's offer non-blocking versions of a block.<b>Advantage</b> is that user level threads is that they can be more efficent than kernal level threads since they do not have to switch to kernal mode.
+
+
+
+###Thread Advantages
+- Creating a threads and switching between them within a process is more efficent than switching between processes
+- Makes programming easier since the memory is shared
+- Threads on multi processor systems can be scheduled and run at the same time parallel
 
