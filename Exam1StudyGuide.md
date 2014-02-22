@@ -125,8 +125,20 @@ A Process may be in one of the following states :
 
 <b>Thread Library</b> : Save and restore registers and manager switching stacks amoung threads. May ask the OS forperiotic software interrupts to enable it to preempt threads. 
 
-<b>User Level Threads</b> : All threads map to a single kernal or single threaded process. <b>Disadvantage</b> with this is that if one user level thread blocks then no other user level threads can run. Many OS's offer non-blocking versions of a block.<b>Advantage</b> is that user level threads is that they can be more efficent than kernal level threads since they do not have to switch to kernal mode.
+<b>User Level Threads</b> : All threads map to a single kernal or single threaded process. <b>Disadvantage</b> with this is that if one user level thread blocks then no other user level threads can run. Many OS's offer non-blocking versions of a block. Another disadvantage is that the user threads cannot take advantage of multiprocessors. <b>Advantage</b> is that user level threads is that they can be more efficent than kernal level threads since they do not have to switch to kernal mode.
 
+<b>Hybrid Threading</b> : Maps N user level threads into M kernal level threads
+
+- When a new thread is created it starts execution at a given function in a program. When it returns from the function the thread is destroyed. A thread can also exist via a system call. 
+
+<b>Join</b> : One thread within a process can wait for another thread to terminate. 
+
+<b>Mutal Exclusion Lock (Mutex)</b> Allows a thread to grab a lock so that all other threads that want to grab the same lock will have to wait. 
+
+##Synchronization
+<b>Concurrent</b> When threads or processes exist at the same time.
+
+<b>Asyn
 
 
 ###Thread Advantages
