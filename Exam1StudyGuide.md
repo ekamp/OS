@@ -138,7 +138,21 @@ A Process may be in one of the following states :
 ##Synchronization
 <b>Concurrent</b> When threads or processes exist at the same time.
 
-<b>Asyn
+<b>Asynchronous</b> : if threads need to synchronize with each other occationally
+
+<b>Synchronous</b> : If threads synchronize frequently so that their relative order of execution is guaranteed.
+
+<b>Race Condition</b> : Bug where the outcome of concurrent threads is dependeent on the percise sequence of execution. Happens when two or more threads trys to make changes to the same peice of memory at the same time.
+
+<b>Critical Sections</b> : Regions of a program that try to access shared resources and cause race conditions
+
+<b>Mutual Exclusion</b> : Enforcing that only one thread at a time can execute within a critical section.
+
+<b>DeadLock</b> : Condition where there is a curcular dependency for resources amoung threads and each oneis waiting on the other to release a lock.
+
+<b>Starvation</b> : The scheduler never gives a thread a chance to run. If it never getsa chance to run will never have a chance to release its resources.
+
+<b>Disabling Interrupts</b>
 
 
 ###Thread Advantages
