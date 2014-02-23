@@ -178,6 +178,24 @@ A Process may be in one of the following states :
 
 <b>Condition variables</b> Supports two operations , wait until a contion var is signaled and signal a condition var. Signaling a con var will wake up a thread that is waiting on a condition variable
 
-<b>Message Passing</b> : Supports two operations send and 
+<b>Message Passing</b> : Supports two operations send and recieve. The most common behavior of message passing is where a send operation does not block and a receive operation does block. The first thread that does a receive  will get the message and then enter the citical section. The second thread will block on the recieve.
 
+<b>Rendezous</b> : Message passing system where the send will block until data is recieved via the recieve command. This is efficent when messaging is donw because it does not require the message to be copied to an immediate buffer.
 
+<b>Direct Addressing</b> : Conventional message passing requires that the sender knows the identify of the thread that will be receiving message. 
+
+<b>Indirect Addressing</b> : Alternative form of messaging via mail boxes
+
+<b>Mailboxes</b> : Allow any number of threads to send to an intermediate queue. Any number of threads can read from this queue
+
+##Scheduling
+<b>CPU Burst</b> : When a process executes for a while then blocks I/O then executes some more.
+
+<b>Scheduler</b> : responsible for deciding what process should get to run next, and if the current process needs to be switched out for another process. If a scheduler can preempt a process and context switch another process then it is a preemptive scheduler, otherwise it is a cooperative scheduler. 
+
+<b>Time Slice</b> : mac time that a process will be allowed to run before it gets preempted and another process gets a chance to run. Short time slices are good for maxing interactive performance. Long time slices reduce the overhead of context switching.
+
+<b>Dispatcher</b> : the component of the scheduler that is responsible for restarting the chosen process. It does so by restoring the process' context onto the CPU and exectuing a return from interrupt instruction that will cause the process to execute from the location that was saved on the stopped running. 
+
+###First Come first served scheduling
+Non-preemptive
