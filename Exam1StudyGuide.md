@@ -198,4 +198,10 @@ A Process may be in one of the following states :
 <b>Dispatcher</b> : the component of the scheduler that is responsible for restarting the chosen process. It does so by restoring the process' context onto the CPU and exectuing a return from interrupt instruction that will cause the process to execute from the location that was saved on the stopped running. 
 
 ###First Come first served scheduling
-Non-preemptive
+Non-preemptive scheduler that uses simple FIFO queue. New processes are added to this queue. First process is taken out of the queue and run. A disadvantage to this is that it is non-preemptive and processes with long CPU bursts will delay other processes. 
+
+###Round Robin Scheduling
+Preemptive version of first come first serve. When a quantum expires for running process is preempted and brought to the rear of the queue. The ready process at the head of the queue is then run. It gives every process in the queue an equal share of the CPU but since it does not schedule highly interactive processes more frequently it is not the best.
+
+###Shortest remaining time first scheuduling
+Picks the process with the shortest estimated CPU burst time to run next. The idea is to maximize average response time 
