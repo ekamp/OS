@@ -204,4 +204,62 @@ Non-preemptive scheduler that uses simple FIFO queue. New processes are added to
 Preemptive version of first come first serve. When a quantum expires for running process is preempted and brought to the rear of the queue. The ready process at the head of the queue is then run. It gives every process in the queue an equal share of the CPU but since it does not schedule highly interactive processes more frequently it is not the best.
 
 ###Shortest remaining time first scheuduling
-Picks the process with the shortest estimated CPU burst time to run next. The idea is to maximize average response time 
+Picks the process with the shortest estimated CPU burst time to run next. The idea is to maximize average response time and let IO bound processes run first issuing the IO's fast and then block. The trick os that you need to estimate the next CPU burst time. This is done through the use of an <b>Exponential Average</b> of previous cpu bursts. 
+
+###Priority Scheduling
+Requires that each process be assign a priority. Highest priorities go first.
+
+<b>Internal Priority</b> : Determined by the system
+
+<b>External Priority</b> : Assigned by the administrator.
+
+<b>Static Priority</b>  : Remain fixed for the duration of execution.
+
+<b>Dynamic Priority</b> : Adjusted by the system as a process executes
+
+<b>Starvation</b> : If there is always a higher priority process that is ready to run. 
+
+<b>Process Aging</b> Increasing the priority of a process as the process gets older in order to avoid starvation.
+
+###Multilevel Queues
+<b>Priority Classes</b> : Unique priority instead of having a purely priority scheduler. Each class as its own unique priority and within the class we have a queue of processes that are associated with that class.
+
+- Each class has its own scheduling algo in order to determine how long the process should run for.
+
+###Multilevel Feedback Queues
+Multilevel queues with dynamic priorities thrown in. If a queue full of processes usees up its time slice it is assigned a lower priority with a longer time slice. One drawback is that if an interactive process has a stretch of computation it will get knocked to a low level and never get pushed back up. In order to address this the system and use process aging.
+
+###Multiprocessor Scheduling
+<b>Processor Affinity</b> : The desire to reschedule a process onto the same processor on which it was previously scheduled to take advantage of the fact that the processor may still have memory used by that process in its cache. 
+
+<b>Hard Affinity</b> : The process may be rescheduled onto the same processor
+
+<b>Soft Affinity</b> : The case where the process may be rescheduled onto another processor to keep the load balanced and ensure that all processor have processes to run.
+
+<b>Load Balancing</b> : The process of making sure that have process have processes to run.
+
+<b>Push Migration</b> : Periotic examination of the load on each CPU. If one process is too heavy it will be moved to another CPU
+
+<b>Pull Migration</b> : Scheduler has no ready processes to run on a CPU and has to get one from another CPU's queue
+
+###Real Time Scheduling
+<b>Start Time</b> : The time at which a process must start in response to some event such as an interrupt
+
+<b>Deadline, Stop Time</b> : The time at which the task must complete. Hard deadline is one in which there is no value if the deadline is missed. Soft deadline is one where there is decreasing values in the computation as the deadline slips.
+
+<b>Termination Process</b> : Processes that run and then exit.
+
+<b>Non-Terminating Process</b> Processes that run for a long time and meet many deadlines such as streaming audio and or video. 
+
+<b>Hard Real time systems</b> Systems that can guarantee response times
+
+<b>Soft Real time systems</b> Systems that cannot guarantee response times
+
+####Earliest Dealine Scheduling
+Each process has a deadline and the scheduler just picks the process that has the nearest deadline. If there is sufficent compute time avalible all processes will completely run. However if there is not some mayb not meet their deadline.
+
+####Least Slack Scheduling
+For each process we know its deadline and required amount of compute time. Slack is determined by how much free time is left. This is the most time we can procrastinate until we have to devote all of the proceessing power to that process. If there is not a sufficent amount of time to compute all of the processes, this method of scheduling will make sure that all are late by the same amount of time.
+
+####Rate Monotonic Analysis
+A way to assign priorities to periotic tasks. Simply gives the highest priority to the process with the shortest period or highest frequency.
