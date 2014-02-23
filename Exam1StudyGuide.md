@@ -152,7 +152,21 @@ A Process may be in one of the following states :
 
 <b>Starvation</b> : The scheduler never gives a thread a chance to run. If it never getsa chance to run will never have a chance to release its resources.
 
-<b>Disabling Interrupts</b>
+<b>Disabling Interrupts</b> : When entering a critical section that other threads will never get a chance to preempt you and run at all. Also requires you to be in kernal mode. 
+
+<b>Test and Set Locks</b> : This can introduce a race condition, a thread can be preempted between testing the value of a lock and setting it. This can allow multiple threads to get the same lock. if(!locked){lock = 1}
+
+<b>Atomic Instructions</b> : perform operations such as test and set as one indivisible operation meaning that another thread cannot preempt the sequence of operations and they all execute sequentially and indivisibly. Some of these instructions include :
+
+- <b>Test and set</b> : Set a memory location to 1 and return the pervious value of the location. If the returned value is 0 you know there was not lock before you exe the function and you grabbed the lock when executing. If the returned value is 1 then it means someone already has control of the lock.
+- <b>Compare and Swap</b> Compare the value of the mem location with an old value that is passed in through the instruction. If the two values match then write the new value into that mem location. With this instruction we set a mem location to a specific value provided that someone did not change the contents before we read. If they did then the change we made will not happen.
+- <b>Fetch and Increment</b> Increment a memory location and return the previous value of that location. Similar to deli line tickets. You grab a number wait for your turn, when its your turn write and then increment the counter.
+
+<b>Spin Lock</b> : Looping in software to wait until the lock is released. Undesirable because it keeps the threads in a ready to run state even though they have nothing to do but loop and wait for a value to change. 
+
+<b>Priority Inversion</b> : The low priority thread needs to be given a higher priority so it can exit the critical section as quickly as possible and let the higher priority threads get in the crit section.
+
+<b>Semaphores</b> : Counts the number of wakeups that are saved for future use. Each time you call down on a semaphore you decrement its value. If the value is 0 and you call down the thread will sleep. When a thread calls up on a semaphore the os will wake up one of the threads that is sleeping on that semaphore. The most basic use is to initialize the semaphore to 1 and when a thread wants to enter a crit section it calls down and enters the section. When the thread is done with the critical section the OS will set the value to 1 so the next thread can decrement and get access to the cit section. 
 
 
 ###Thread Advantages
