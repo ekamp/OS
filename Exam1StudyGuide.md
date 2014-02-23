@@ -116,6 +116,12 @@ A Process may be in one of the following states :
 
 <b>Thread</b> : Can be thought of as the part of a process that is related to the execution flow
 
+
+###Thread Advantages
+- Creating a threads and switching between them within a process is more efficent than switching between processes
+- Makes programming easier since the memory is shared
+- Threads on multi processor systems can be scheduled and run at the same time parallel
+
 <b>Multithreaded</b> : A process with more than one thread. However now the PCB now keeps track of the threads for that process. 
 
 <b>Thread Control Block</b> : Thread specific information such as registers, program counters, stack pointers, priority.
@@ -168,9 +174,10 @@ A Process may be in one of the following states :
 
 <b>Semaphores</b> : Counts the number of wakeups that are saved for future use. Each time you call down on a semaphore you decrement its value. If the value is 0 and you call down the thread will sleep. When a thread calls up on a semaphore the os will wake up one of the threads that is sleeping on that semaphore. The most basic use is to initialize the semaphore to 1 and when a thread wants to enter a crit section it calls down and enters the section. When the thread is done with the critical section the OS will set the value to 1 so the next thread can decrement and get access to the cit section. 
 
+<b>Event Counters</b> : works similar to the way you would use a fetch and increment instruction but without the spin lock. Three operations can occur , read the current value of the counter, increment it, or wait for it to be a certain value.
 
-###Thread Advantages
-- Creating a threads and switching between them within a process is more efficent than switching between processes
-- Makes programming easier since the memory is shared
-- Threads on multi processor systems can be scheduled and run at the same time parallel
+<b>Condition variables</b> Supports two operations , wait until a contion var is signaled and signal a condition var. Signaling a con var will wake up a thread that is waiting on a condition variable
+
+<b>Message Passing</b> : Supports two operations send and 
+
 
