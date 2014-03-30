@@ -3,7 +3,7 @@
 ##Memory Management
 <b>Single Partition Multiprogramming</b> : Allows only a single program to be loaded in memory at any given time. Shares its memory with the OS and nothing else.
 
-<b>CPU Utilization</b> : Estimated percentage of time that the CPU is not idle.
+<b>CPU Utilization</b> : Estimated percentage of time that the CPU is not idle.</br>
 <b>The Degree of Multiprogramming</b> : The number of processes and candidates for running in memory at one time.
 <b>Absolute Code</b> Uses real memory addresses and expects to be loaded into and run from a specific memory location.
 <b>Position Independent Code</b> : Uses relative addresses throughout and may be loaded into any mem location.
