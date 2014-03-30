@@ -124,3 +124,9 @@ Refers to the technique of allocating and loading memory pages on demand, when a
 <b>Minor Number</b> : Interpreted within the device driver, identifies which specific instance of a device is being accessed. Such as SATA disks will have one driver but multiple disks. Major number will id the driver and the minor number will identify the disk.
 
 ###Execution Contexts
+Kernal Code runs one of the following contexts
+- <b>Interrupt Context</b> : this is invoked by the spontaneous change in the flow of execution when a hardware interrupt takes place anywhere.
+- <b>User Context</b> : THe flow of control when a user process invokes a system call. The mode switch to kernal took place but the context is still that of a user process. I/O may be scheduled but kernal has to put process in blocked state and context switch to another process.
+- <b>Kernal Context</b> : Kernal has one or more worker threads that it schedules just like any other process. No relation to user threads they have a context and may block
+
+<i>By putting devices in the same hierachical name space as files the OS provides a degree of transparency where apps do not know if they are interacting with a file or with a device, this is seen when a user uses a terminal window where the terminal can take input from the keyboard and from a built in file in the same manner.</i>
