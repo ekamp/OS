@@ -130,3 +130,6 @@ Kernal Code runs one of the following contexts
 - <b>Kernal Context</b> : Kernal has one or more worker threads that it schedules just like any other process. No relation to user threads they have a context and may block
 
 <i>By putting devices in the same hierachical name space as files the OS provides a degree of transparency where apps do not know if they are interacting with a file or with a device, this is seen when a user uses a terminal window where the terminal can take input from the keyboard and from a built in file in the same manner.</i>
+
+###Device Drivers
+Device drivers are modular and can be compiled into the kernal and are either loaded at initialization or dynamically loaced at any time in the future. 
