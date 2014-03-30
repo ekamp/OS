@@ -153,5 +153,10 @@ Spinning magnetic disks are still the dominant device for storing large amounts 
 
 <b>Circular Look </b> : Is similar to look except schedules requests only in one direction.
 
-<b>Shortest Seek Time First</b> : the queue of current requests is to be sorted by cylinder numbers closest to the current head position and requests made in that order. 
+<b>Shortest Seek Time First</b> : the queue of current requests is to be sorted by cylinder numbers closest to the current head position and requests made in that order.
+
+##File Systems
+<b>Mount</b> : Multiple File systems can combine into one abstract view via this.
+
+
 
