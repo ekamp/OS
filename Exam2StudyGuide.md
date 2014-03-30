@@ -132,4 +132,26 @@ Kernal Code runs one of the following contexts
 <i>By putting devices in the same hierachical name space as files the OS provides a degree of transparency where apps do not know if they are interacting with a file or with a device, this is seen when a user uses a terminal window where the terminal can take input from the keyboard and from a built in file in the same manner.</i>
 
 ###Device Drivers
-Device drivers are modular and can be compiled into the kernal and are either loaded at initialization or dynamically loaced at any time in the future. 
+- Device drivers are modular and can be compiled into the kernal and are either loaded at initialization or dynamically loaced at any time in the future.
+- Next the drivers register themselves with with the kernels interrupt handler.
+- Then when an interrupt occurs the handler calls the appropriate handling function in the driver.
+- To ensure it does not take two long it is split into to processes
+<b>Top Half</b> : the interrupt service routine that is registered with the interrupt handler. Does as little as possible grabbing data placing it into a buffer and scheduling bottom half activity.
+<b>Bottom Half</b> : Scheduled by the top half and does much of the work. Because it runs in the kernal thread it may block.
+
+###Disk Scheduling
+Spinning magnetic disks are still the dominant device for storing large amounts of information.
+<b>Disk Scheduling Algorithm</b> : Used to optimize the flow of data between memory and disk.
+
+<b>First Come First Serve FFS</b> Processes requests in the order in which they are generated.
+
+<b>Elevator Algorithm</b> : Moves the head of the disk back and forth, uses the system to keep track of the current head position and direction. Requests are sorted in the order they arrived and the head moves from track 0 to track n.
+
+<b>Look Algorithm</b> : Reverses the disk's head direction if there are no blocks schedulred beyond the current point.
+
+<b>Circular Scan</b> : Schedules disk requests only when the head is moving in one direction to avoid preferential treatment of blocks in the middle.
+
+<b>Circular Look </b> : Is similar to look except schedules requests only in one direction.
+
+<b>Shortest Seek Time First</b> : the queue of current requests is to be sorted by cylinder numbers closest to the current head position and requests made in that order. 
+
