@@ -37,7 +37,7 @@ within each fragment or partition is known as internal fragmentation.
 
 <b>Memory Compaction</b> : relocate processes in memory, however this is a time consuming approach. If a process grows it will need more memory and the OS will need to find a bigger unallocated block for that process, relocated other processes or save the processes memory into disk and wait for memory to be freed.
 
-##Page Based Virtual Memory
+###Page Based Virtual Memory
 <b>Page-Based</b> Physical memory is divided into equal-sized chunks that are of size pwr of two.
 
 <b>Page Frames</b> Equal sized chunks of physical memory
@@ -77,5 +77,31 @@ within each fragment or partition is known as internal fragmentation.
 
 <b>Combined Segmentation and Paging System</b> : Logical address is offset by a segment base register. The result address is a linear virtual address and is found in a 2 level pge table used to generate a physical address
 
-##Demand Paging
+###Demand Paging
+Refers to the technique of allocating and loading memory pages on demand, when a process makes a demand for memory
+
+<b>Page Fault</b> : When a process makes a memory reference to a page that is not mapped onto a page frame.
+
+<b>Page File</b> : ?
+
+<b>Page Replacement </b> : The process of finding a page to save out onto disk to create a free page frame. Idealy we would like to reduce the number of times we have to do this because writing to disk is very slow
+
+####Page Replacement Policies
+<b>Least Recently Used LRU</b> : Will write pages to disk that are not used often or are the oldest, only problem is that we cannot keep counts on the MMU.
+
+<b>Clock Algorithm</b> : Looks at a page frames as a circular list. When a page needs to be evicted the algo starts at the current position and looks for page frames whose ref bits are 0 (meaning that they have not been referenced for a while).
+
+<b>nth Chance Replacement</b> : Similar to clock except it keeps a counter per page entry. When using a page we check its
+
+<b>Locality</b> : A process tends to reference the same pages over and over before ,moving onto other pages.
+
+<b>Working Set</b> The set of pages referenced over and over. This working set should be in memory for quick access.
+
+<b>Thrashing</b> : Constantly paging to and from the disk, which occurs when the working set is not in memory.
+
+<b>Working Set Model </b> : Approximates the locality chatacteristics of a process to try to identify the processes that are in the working set, in order to put them in memory and avoid thrashing.
+
+<b>Page Fault Frequency</b> : Manages resident sets, if a process does not have its working set in memory it will generate page faults, however if a process never generates page faults that means it has too much memory allocated to it. Therefore a threshhold of page faults needs to be set to determine the amount of memory or page frames that should be allocated to each process.
+
+##Devices
 
