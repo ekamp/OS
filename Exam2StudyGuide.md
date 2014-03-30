@@ -104,4 +104,23 @@ Refers to the technique of allocating and loading memory pages on demand, when a
 <b>Page Fault Frequency</b> : Manages resident sets, if a process does not have its working set in memory it will generate page faults, however if a process never generates page faults that means it has too much memory allocated to it. Therefore a threshhold of page faults needs to be set to determine the amount of memory or page frames that should be allocated to each process.
 
 ##Devices
+<b>Block Device</b> : provides structured access to the underlying hardware. Block devices can host a file system. Since it is persistent it can cache memory.
 
+<b>Buffer Cache</b> : a pool of kernal memory that is allocated to hold frequently used blocks from block devices. Through the use of a buffer cache we can min the number of I/O requests that actually require a device I/O operation.
+
+<b>Character Device</b> : Provides unstructured access to the underlying hardware such as :
+- printers
+- scanners
+- mice
+- video frame buffer
+<i>Basically something that needs a driver to run on your computer</i>
+
+<b>Block Device Table</b> : Kernal maintains this to keeps track of block devices
+
+<b>Character Device Table</b> : Kernal maintains this to keep track of character devices
+
+<b>Major Number</b> : an index into either the block or character device table and allows the kernal to fin functions that are associated with that device; these functions are called the <b>Device Driver</b>
+
+<b>Minor Number</b> : Interpreted within the device driver, identifies which specific instance of a device is being accessed. Such as SATA disks will have one driver but multiple disks. Major number will id the driver and the minor number will identify the disk.
+
+###Execution Contexts
