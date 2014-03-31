@@ -61,8 +61,19 @@ within each fragment or partition is known as internal fragmentation.
 <b>Next Fit Algorithm</b> : Searches for avalible memory based on where it left off
 
 <b>Buddy System </b> : Manages memory in power of two increments. The memory manager keeps track of free blocks. Uses a page allocator in order to allocate memory for entire pages.
+- Two pages are buddies if : 
+  - They are the same size
+  - They are contiguous
+  - If the address of the first block is a multiple of 2
 
 ###Page Based Virtual Memory
+####Advantages
+- Simplify memory management for multiprogramming
+  - Allow discontiguous memory
+  - MMU creates the illusion of contiguous memory
+  - Allows a process feel like it has more memory than it does
+  - Uses memory protection
+
 <b>Page-Based</b> Physical memory is divided into equal-sized chunks that are of size pwr of two.
 
 <b>Page Frames</b> Equal sized chunks of physical memory
@@ -110,13 +121,23 @@ Refers to the technique of allocating and loading memory pages on demand, when a
 <b>Page File</b> : ?
 
 <b>Page Replacement </b> : The process of finding a page to save out onto disk to create a free page frame. Idealy we would like to reduce the number of times we have to do this because writing to disk is very slow
+- Pick a page to evict
+- Save the contents of the page to disk
+- Change the contents of the page table whose page is being evicted
+- Read the desired page into the frame we choose
+- Update the page table to the process that caused the page fault
+- Return from the exection restarting the instruction that caused the fault
 
 ####Page Replacement Policies
-<b>Least Recently Used LRU</b> : Will write pages to disk that are not used often or are the oldest, only problem is that we cannot keep counts on the MMU.
+<b>First In First Out</b> : The oldest added pages will be evicted from memory however this does not take into account that these pages might be freqently used regardless of when they were added to the page table.
 
-<b>Clock Algorithm</b> : Looks at a page frames as a circular list. When a page needs to be evicted the algo starts at the current position and looks for page frames whose ref bits are 0 (meaning that they have not been referenced for a while).
+<b>Least Recently Used LRU</b> : Will evict a page that has the oldest use date assuming it will not be used again for a while, only problem is that we cannot keep counts on the MMU.
 
-<b>nth Chance Replacement</b> : Similar to clock except it keeps a counter per page entry. When using a page we check its
+<b>Not Frequently Used</b> : OS with each clock interrupt will keep a count of how often a page is used. Once it needs to evict it will evict the lowest counter on a specific page. Sets the bit to 0 or 1 each time
+
+<b>Clock Algorithm</b> : Looks at a page frames as a circular list. When a page needs to be evicted the algo starts at the current position and looks for page frames whose ref bits are 0 (meaning that they have not been referenced for a while). Does this with within a recent frame of time.
+
+<b>nth Chance Replacement</b> : Similar to clock except it keeps a counter per page entry. When using a page we check its counter
 
 <b>Locality</b> : A process tends to reference the same pages over and over before ,moving onto other pages.
 
@@ -144,13 +165,46 @@ Refers to the technique of allocating and loading memory pages on demand, when a
 - video frame buffer
 <i>Basically something that needs a driver to run on your computer</i>
 
+<b>Block Device</b> : Provides direct access to the underlying hardware, they can host filesystems
+
+<b>File Systems</b> : Determines how data is organized on a block device, in order to present with a heigharchy of directories and files with access permissions for both.
+
+<b>Network Devices</b> : Packet orientented device. Is accessable through sockets
+
 <b>Block Device Table</b> : Kernal maintains this to keeps track of block devices
+
+<b>Character Device</b> : Provides unstructured access to underlying devices.
+- Terminal multiplexer, mouse , printer, scanner, frame buffer, sound and bus devices
+- Character Devices have two modes : 
+  - Raw Mode: 
+    - Direct access to the the infomration from the process, needed for a mouse , keyboard
+  - Line Mode (Cooked) :
+    - Input characters are echoed and stored in a buffer until a return is recieved, then the entire line is made avalible       to the process
+
 
 <b>Character Device Table</b> : Kernal maintains this to keep track of character devices
 
 <b>Major Number</b> : an index into either the block or character device table and allows the kernal to fin functions that are associated with that device; these functions are called the <b>Device Driver</b>
 
+<b>Device Driver</b> : Each device connected to a computer requires a driver to use it, implement a mechanism not a policy
+
+<b>Device Controller</b> : The driver communicates with this to control the connected device itself
+
+<b>Mechanism</b> : Specifies the way to interact with a device.
+
+<b>Policy</b> : Enforces who can access the device and in what way they can control it.
+
 <b>Minor Number</b> : Interpreted within the device driver, identifies which specific instance of a device is being accessed. Such as SATA disks will have one driver but multiple disks. Major number will id the driver and the minor number will identify the disk.
+
+<b>Frameworks</b> : Formalizes a set of interfaces for drivers of specific types.
+
+<b>Device Independence</b> : I/O operations should have a consistent interface for different devices
+
+<b>Seek time</b> : How much does the disk arm have to move to get the correct cylinder.
+
+<b>Rotational Latency</b> : How much does the disk have to spin to get to the correct position/
+
+<b>Transfer Rate</b> : How fast can data be transfered to the computers memory.
 
 ###Execution Contexts
 Kernal Code runs one of the following contexts
