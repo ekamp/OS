@@ -241,3 +241,8 @@ Adaptation of Berkleys FFS, Uses simply cluster allocation to allocate memory.
 
 
 ####Linux Ext 4
+Improvement to ext 3 and can be run on larger files. The two enhancements are : 
+- <i>Extent Based allocation</i> : Instead of listing block numbers in inodes it uses extents. The extents contain the starting cluster number of a group of clusters along with a cluster count. Can allow for more data to be addressed from a list of blocks
+- <i>Delayed Allocation of Free Space</i> : Instead of allocating data clusters as the file grows the blocks are kept in teh buffer cache and allocated to physical blocks only when they are ready to be flushed, increasing the likely hood for contiuguous blocks of memory.
+
+###Microsoft NTFS
