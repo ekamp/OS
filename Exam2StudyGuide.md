@@ -261,7 +261,7 @@ Spinning magnetic disks are still the dominant device for storing large amounts 
 
 <b>File</b> : The VFS keeps track of open files and contains interfaces to open close read and write to files as well as a map to lock them . The file object represents an open file and keeps track of the access mode and reference counts.
 
-<b>SuperBlock</b> : Contains interfaces to get information about a file system such as read write delete inodes. and the ability to lock the file system.
+<b>SuperBlock</b> : Contains interfaces to get information about a file system such as read write delete inodes. and the ability to lock the file system. In UFS contains an array of a few free blocks
 
 ###Managing File Systems
 The lowest level of dealing with file systems is allocating and managing memory using certain blocks over others. For flash memory there are no improvements by using one block vs the other. However when using disks there are seek times in order to fetch certain memory
@@ -270,7 +270,7 @@ The lowest level of dealing with file systems is allocating and managing memory 
 
 <b>External Fragmentation</b> : Regions of free blocks are wasted as new disk blocks are allocated and deleted
 
-<b>Extents</b> : A contiguous set of blocks, used as a compromise to contiguous allocation. A file will use one or more extents and they are typically refered to as tuples.
+<b>Extents</b> : A contiguous set of blocks, used as a compromise to contiguous allocation. A file will use one or more extents and they are typically refered to as tuples. Extents will contain reference to other extents if a file cannot be stored in just one extent
 
 <b>Cluster</b> : Logical block used throughout the file system that is the grouping of multiple blocks.This will result in better performance but more internal fragmentation.
 
@@ -279,17 +279,21 @@ The lowest level of dealing with file systems is allocating and managing memory 
 <b>File Allocation Table</b> : A table of block numbers are created. Here the number of the next block is stored at table[current_block_number]. Contains the file name and the first block number allocated to that block.
 - In order for FAT to be efficient the table must be completely stored in memory for fast access.
 
-<b>Indexed Allocation</b> : Alternatively reading in just the blocks used by the file we are interested in. This is not optimal because there are varying sizes of files therefore the reading in will take longer or shorter each time.
+<b>Indexed Allocation</b> : Alternatively reading in just the blocks used by the file we are interested in. This is not optimal because there are varying sizes of files therefore the reading in will take longer or shorter each time. Store the list of block pointers all in one place.
 
 <b>Combined Indexing</b> : Uses fixed length structures. The information for the structure is storeed in the inode.
 
-<b>Direct Block Pointer</b> : refer directly to the block
+<b>Direct Block Pointer</b> : refer directly to the block, the first few blocks allocated to the file
 
 <b>Indirect Block Pointer</b> : If a file needs to use more blocks then it utilizes this to allocate or gain more memory, the inode contains this.
 
 <b>Double Indirect Block</b> : If a file needs even more blocks then it utilizes this where the inode points to a block that contains a list of indirect block pointers.
 
 ###File System Implementation Systems
+
+<b>Namespace</b> : Collections of names and paths of files and directories
+
+<b>Block Allocation</b> : How to keep track of free space on disk, and which blocks can be allocated
 
 <b>Unix File System</b>
 An example of the inode based file system. When laid out in disk format it contains three sections, super blocks inode blocks and data blocks.
@@ -303,6 +307,13 @@ An example of the inode based file system. When laid out in disk format it conta
 - Cylinder Groups : Instead of having one region for inodes and another for data multiple regions were created. The information specified for the most part will be in the same cylinder as the inode.
 - Bitmap Allocation : Instead of using a linked list of free blocks a bitmaps is used to keep track of which blocks are in use within each cylinder. Makes it easy to find contiguous or nearby clusters rather than just using any avalible free cluster.
 - Prefetch : If two or more sequential blocks are read from a file FFS thinks file access is sequential and will prefetch additional blocks from that file.
+- Larger Blocks : Used a block or cluster size of 4096, this resulted in much internal fragmentation and in order to address this bitmaps kept track of free space within each block.
+- Cylinder Groups : Group of all blocks where successive blocks in the group can be accessed efficently
+- Optimized Seqential Access : Bringing all related files close to a file in order to provide faster access
+- Improved Fault Tolerance
+- Directories and Inodes : Each entry is no longer a fixed length
+- Symbolic Links : Allocated and structured like regular files except have a flag in the inode saying they are symbolic links. These are used for directories and files on other file systems.
+- Uses 14 - 47% of the raw bandwidth
 
 ####Linux Ext 2
 Adaptation of Berkleys FFS, Uses simply cluster allocation to allocate memory. 
