@@ -158,5 +158,18 @@ Spinning magnetic disks are still the dominant device for storing large amounts 
 ##File Systems
 <b>Mount</b> : Multiple File systems can combine into one abstract view via this.
 
+<b>Mount Points</b> : In order to mount the file system the OS will place the root at the mount. The OS maintains a list of mount points in order to seamlessly transfer from one to the other.
 
+<b>Virtual File System</b> : To support transparency this layer of abstraction is used. This is also an object oriented approach to looking at a file system.
 
+<b>File System Modules</b> : Interfaces with the VFS , and they implement a specific underlying file system.
+
+####Virtual File System Layers
+- System Call Interface : API's used for user programs
+- Virtual File System : Manages the namespace keeps track of open files, reference counts, mount points
+- File System Module (Drivers) : Understands how the filesystem is implemented on disk, can fetch and store metadata and data for a file.
+- Buffer Cache : No understanding of the file system takes read and write requests from blocks or parts of blocks uses frequently.
+- Device Drivers : The components that know how to read and write from disk.
+
+####VFS Crucial Components
+<b>Inode</b> 
