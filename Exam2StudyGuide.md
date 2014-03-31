@@ -181,4 +181,42 @@ Spinning magnetic disks are still the dominant device for storing large amounts 
 <b>SuperBlock</b> : Contains interfaces to get information about a file system such as read write delete inodes. and the ability to lock the file system.
 
 ###Managing File Systems
+The lowest level of dealing with file systems is allocating and managing memory using certain blocks over others. For flash memory there are no improvements by using one block vs the other. However when using disks there are seek times in order to fetch certain memory
 
+<b>Contiguous Allocation</b> : That is if a file's data requires disk block the blocks will be contiguous.
+
+<b>External Fragmentation</b> : Regions of free blocks are wasted as new disk blocks are allocated and deleted
+
+<b>Extents</b> : A contiguous set of blocks, used as a compromise to contiguous allocation. A file will use one or more extents and they are typically refered to as tuples.
+
+<b>Cluster</b> : Logical block used throughout the file system that is the grouping of multiple blocks.This will result in better performance but more internal fragmentation.
+
+<b>Linked Allocation</b> : Uses a few bytes from each block to store the block number of the next block in file.
+
+<b>File Allocation Table</b> : A table of block numbers are created. Here the number of the next block is stored at table[current_block_number]. Contains the file name and the first block number allocated to that block.
+- In order for FAT to be efficient the table must be completely stored in memory for fast access.
+
+<b>Indexed Allocation</b> : Alternatively reading in just the blocks used by the file we are interested in. This is not optimal because there are varying sizes of files therefore the reading in will take longer or shorter each time.
+
+<b>Combined Indexing</b> : Uses fixed length structures. The information for the structure is storeed in the inode.
+
+<b>Direct Block Pointer</b> : refer directly to the block
+
+<b>Indirect Block Pointer</b> : If a file needs to use more blocks then it utilizes this to allocate or gain more memory, the inode contains this.
+
+<b>Double Indirect Block</b> : If a file needs even more blocks then it utilizes this where the inode points to a block that contains a list of indirect block pointers.
+
+###File System Implementation Systems
+
+<b>Unix File System</b>
+An example of the inode based file system. When laid out in disk format it contains three sections, super blocks inode blocks and data blocks.
+
+- Performance of UFS is very poor due to the following factors
+  - Linked list approach to the file system results in much fragmentation over time in other words when a files allocation of memory is not contiguous.
+  - Additionally there is a large seek time on the disk due to the fact that the inode is at the beginning and most of the information in the middle of the block
+
+<b>Berley Fast File System</b> : Berkely redesigned the file system to improves performance in certain areas.
+- Larger clusters : FFS Chose a larger cluster size, bringing eight fold improvement in contiguous allocation.
+- Cylinder Groups : Instead of having one region for inodes and another for data multiple regions were created. The information specified for the most part will be in the same cylinder as the inode.
+- Bitmap Allocation : Instead of using a linked list of free blocks a bitmaps is used to keep track of which blocks are in use within each cylinder. Makes it easy to find contiguous or nearby clusters rather than just using any avalible free cluster.
+- 
