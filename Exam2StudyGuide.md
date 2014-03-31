@@ -219,4 +219,25 @@ An example of the inode based file system. When laid out in disk format it conta
 - Larger clusters : FFS Chose a larger cluster size, bringing eight fold improvement in contiguous allocation.
 - Cylinder Groups : Instead of having one region for inodes and another for data multiple regions were created. The information specified for the most part will be in the same cylinder as the inode.
 - Bitmap Allocation : Instead of using a linked list of free blocks a bitmaps is used to keep track of which blocks are in use within each cylinder. Makes it easy to find contiguous or nearby clusters rather than just using any avalible free cluster.
-- 
+- Prefetch : If two or more sequential blocks are read from a file FFS thinks file access is sequential and will prefetch additional blocks from that file.
+
+####Linux Ext 2
+Adaptation of Berkleys FFS, Uses simply cluster allocation to allocate memory. 
+
+<b>Block Group</b> Instead of cylinder groups this uses block groups, since modern disks make it imposible to determine cylinder groups. This is just an abstraction of a long list of blocks. Caches all its memory internally in the buffer cache. FFS instead would flush metadata in order to prevent corruption.
+
+####Linux Ext 3
+<b>Consistent<b/> : all free blocks and inode bitmaps are accurate all allocated inodes are referenced by files , and each block is marked as either free or filled.
+
+<b>Inconsistent State</b> : If something spontaneous happens such as a loss of power not all of the blocks will be writen to disk resulting in this state.
+
+<b>Consistent update problem</b> : performing all updates automatically all should be applied to the file system or none should be applied.
+
+<b>Journaling</b> : method of applying this atomicity. All changes are first writen to a log called a journal. When all changes are complete the journal is marked as the transaction end only when the transaction is complete on disk the same sequence is now applied to the file system. When complete the transaction entry is deleted from the log. Should anything happen to the system upon restart all changes currently in the log take place. 
+- The downside to this is that journaling does not have good performace
+- <b> Full data Journaling</b> : All changes appended to log and then applied to the file system
+- <b>Ordered Journaling</b> : Write the data blocks first and the journals the metadata, terminates the process and then applies the metadata from the journal. Always in consistent state but can lead to partially moded data due to an interrupt when writing data before end of transaction occurs.
+- <b>Writeback Journaling</b> : Does metadata journaling without writing the data blocks first. It is the fastest form of journaling however can result in corruption of the files. Leads to no more corruption than the typical file sysytem however is faster.
+
+
+####Linux Ext 4
