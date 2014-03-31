@@ -1,7 +1,26 @@
 #OS Exam 2 Study Guide
 
 ##Memory Management
+<b>Memory Manager</b> : Part of the OS that allocates resources to the processes
+
+<b>Program Loader</b> Loads a program into memory.
+
+<b>Symbol Table </b> Contains the special reserved names and functions when used with programs, such as the c or java language reserved functions.
+
+<b>Linker</b> Matches or finds symbols referenced by a combiled file
+
+<b>Static Linking</b> : All symbols are found by the linker and any resources are copied into the final executable file.
+<i>Disadvantages</i>
+- If the library updates then the exe is out of date
+- The size of the program file is much bigger
+
+<b>Dynamic Linking</b> : just in time linking, does not rely on a linker to put everything in an ex file. Symbols are defined when the program loads. The linker references a stub library to find the symbols.
+
+<b>Shared Libraries</b> : Adds code sharing into dynamic linking. First the stub function checks whether the needed library is already in memory, if not it loads it.
+
 <b>Single Partition Multiprogramming</b> : Allows only a single program to be loaded in memory at any given time. Shares its memory with the OS and nothing else.
+
+<b>Single Partition Monoprogramming</b> : Only allow a single program to be run at a time and only keep that program in memory. A small portion of memory was saved for the OS.
 
 <b>CPU Utilization</b> : Estimated percentage of time that the CPU is not idle.
 
@@ -16,7 +35,7 @@ blank and generates this table.</i> Allows references to be filled when the prog
 
 <b>Logical and Virtual Addressing</b> : Relys on hardware to dynamically transform address references made by the process into actual memory locations.
 
-<b>Memory Management Unit</b> : Performs the translation for log and virtual addressing.
+<b>Memory Management Unit</b> : Performs the translation for log and virtual addressing tp physical addressing.
 
 <b>Base Address</b> : An address added to each memory reference made by a process. Based on where in memory the process is loaded.
 
@@ -36,6 +55,8 @@ within each fragment or partition is known as internal fragmentation.
 <b>Variable Partitions</b> : OS creates memory for a process on demand using a block of contiguous memory. Holes will form in memory where new processes might not be able to fill the hole.
 
 <b>Memory Compaction</b> : relocate processes in memory, however this is a time consuming approach. If a process grows it will need more memory and the OS will need to find a bigger unallocated block for that process, relocated other processes or save the processes memory into disk and wait for memory to be freed.
+
+<b>Paging</b> : 
 
 ###Page Based Virtual Memory
 <b>Page-Based</b> Physical memory is divided into equal-sized chunks that are of size pwr of two.
