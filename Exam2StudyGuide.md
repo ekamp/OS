@@ -172,4 +172,13 @@ Spinning magnetic disks are still the dominant device for storing large amounts 
 - Device Drivers : The components that know how to read and write from disk.
 
 ####VFS Crucial Components
-<b>Inode</b> 
+<b>Inode</b> : Uniquely identifies a file. It also stores key information about a file and a location of its data. 
+
+<b>Dentry</b> aka directory entry, an abstract representation of a directory's contents. Contains the file name the inode so we can access its contents and a pointer to its parent directory.
+
+<b>File</b> : The VFS keeps track of open files and contains interfaces to open close read and write to files as well as a map to lock them . The file object represents an open file and keeps track of the access mode and reference counts.
+
+<b>SuperBlock</b> : Contains interfaces to get information about a file system such as read write delete inodes. and the ability to lock the file system.
+
+###Managing File Systems
+
