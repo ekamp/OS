@@ -246,3 +246,7 @@ Improvement to ext 3 and can be run on larger files. The two enhancements are :
 - <i>Delayed Allocation of Free Space</i> : Instead of allocating data clusters as the file grows the blocks are kept in teh buffer cache and allocated to physical blocks only when they are ready to be flushed, increasing the likely hood for contiuguous blocks of memory.
 
 ###Microsoft NTFS
+Successor to FAT file system. Allocates data in extents on top of clusters and is designed such that ever file system appears as a file whereas UNIX as distinct areas for inodes and bitmaps.
+<b>Master File Table</b> : The structure that keeps track of file records and is structured like a B tree for searching for a specific record. 
+- Each file system is similar to an inode in that it contains information about the file
+- Very small files contain all their data within a file record and do not require any additional disk blocks.
