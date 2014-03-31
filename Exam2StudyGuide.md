@@ -56,7 +56,11 @@ within each fragment or partition is known as internal fragmentation.
 
 <b>Memory Compaction</b> : relocate processes in memory, however this is a time consuming approach. If a process grows it will need more memory and the OS will need to find a bigger unallocated block for that process, relocated other processes or save the processes memory into disk and wait for memory to be freed.
 
-<b>Paging</b> : 
+<b>Quick Fit Algorithm</b> : Maintains a seperate list of common sizes. Uses the buddy system.
+
+<b>Next Fit Algorithm</b> : Searches for avalible memory based on where it left off
+
+<b>Buddy System </b> : Manages memory in power of two increments. The memory manager keeps track of free blocks. Uses a page allocator in order to allocate memory for entire pages.
 
 ###Page Based Virtual Memory
 <b>Page-Based</b> Physical memory is divided into equal-sized chunks that are of size pwr of two.
@@ -123,6 +127,10 @@ Refers to the technique of allocating and loading memory pages on demand, when a
 <b>Working Set Model </b> : Approximates the locality chatacteristics of a process to try to identify the processes that are in the working set, in order to put them in memory and avoid thrashing.
 
 <b>Page Fault Frequency</b> : Manages resident sets, if a process does not have its working set in memory it will generate page faults, however if a process never generates page faults that means it has too much memory allocated to it. Therefore a threshhold of page faults needs to be set to determine the amount of memory or page frames that should be allocated to each process.
+
+<b>Slab</b> : is one block of contiguous memory often several pages in size. Responsible for allocation of memory objects of the same size.
+
+<b>Cache</b> : Collection of slabs responsible for a single object.
 
 ##Devices
 <b>Block Device</b> : provides structured access to the underlying hardware. Block devices can host a file system. Since it is persistent it can cache memory.
