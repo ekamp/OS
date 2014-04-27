@@ -52,4 +52,13 @@
 - <b>Presentation Layer</b> : Manages the representation of data and handles any conversion of data types
 
 ###IP Networking
-- <b>Internet Protocol</b>
+- <b>Internet Protocol</b> : Handles the interconnection of wide and local area networks
+- IP is layer 3 and ethernet or physical layer is layer 2
+- In order to send a packet out the system must find the corresponding ip address that relates to the machines MAC address
+- <b>Address Resolution Protocol</b> : Finds the MAC address for the corresponding IP address via a broadcast on the network
+- <b>Transmission Control Protocol</b> : is a connection oriented service that makes sure that packets are transmitted to the source in the order that they were transmitted and resends lost packets. Keeps track of the destination so that it has an illusion of a connected data stream
+- <b>User Datagram Protocol</b> : is a connectionless service that drops packets with corrupt data and does not ensure in order service of packets or delivery of packets.
+- <b>Port Numbers</b> : Allow the OS to direct the data to the correct endpoint, or more precisly the socket that is associated with the connection stream.
+- <b>Protocol Encapsulation</b> : Keeps the layer of the networking stack seperate. TCP or UDP data and packet data are simply treated as an IP packet. The 6-byte IP header identifies the type of protocol to use so it can send it to the correct OSI layer. Likewise a <b>Frame</b> or ehternet packet treats the entire IP packet as data. It has a 2 byte header so that the ethernet driver can send to the correct module
+
+###Sockets
