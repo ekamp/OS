@@ -217,7 +217,7 @@
         - However this does not restrict network operations
 - <b>Rule Based Sandbox</b> : Sets finer grain policies on what an application can do. 
 - Popular examples of sandboxes are the JVM and Apple Sand Box
-- There are three parts to the JVM sandbox
-        - <b>Byte Code Verifier</b> : Ensures that the code looks like verified java byte code with no attempts to illigally convert or force pointers
-        - <b>Class Loader</b> : Enforces restriction on whether a program is able to run additional applets
-        - <b>Security Manager</b> : invoked to provide run time vertification of whether a program has rights to invoke a method
+- There are three parts to the JVM sandbox  
+    - <b>Byte Code Verifier</b> : Ensures that the code looks like verified java byte code with no attempts to illigally convert or force pointers  
+    - <b>Class Loader</b> : Enforces restriction on whether a program is able to run additional applets  
+    - <b>Security Manager</b> : invoked to provide run time vertification of whether a program has rights to invoke a method
