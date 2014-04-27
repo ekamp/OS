@@ -92,4 +92,26 @@
 - <b>Remote Access Model</b> : Individual requests are sent to the remote server as remote procedures
 
 ##Network File System Examples
-- <b>NSF</b>
+##NSF
+- Server does not maintain state therefore there is no need for remote open or close procedures.
+- This works well is faulty environments , since there is no state to restore if the server crashes
+- To improve performance the client requests a large block of data performing a read ahead reading future blocks ahead of time
+- NFS is ambiguous because the server and clients do not know what blocks each one of the clients have cahced so far
+- File locking was not possible because it is stateless however a seperate file manager was implemented later on
+    
+##AFS
+- Improvement of NFS to support file sharing over a large scale
+- Introduced the use of a large cache on the client side to hold remote files for a long time. (Long term caching)
+- This supports the file upload and download model
+- <b>Whole File Download</b> : The whole file is downloaded on first access
+- <b>Session Semantics</b> : The last one to close a modified file wins and the other changes are overwritten
+- <b>Callback promise</b> : Server makes this and keeps track of all the clients that have downloaded a file. When a modification is mad it issues a callback where it then goes through the clients that have downloaded the file and invalidates the old version of the file that they have.
+- The next time that the client opens the file it will be the new file that was downloaded from the server
+- <b>Volumes</b> : Files under AFS are shared under this , directory on a file system that has a unique ID . If the server wants to move a volume it just sends a requenst with the data to the new server and the client is unaware of this change
+
+###SMB
+- Server Message Block : Connection oriented stateful file system
+- Uses the remote access model
+
+##Protection and Security
+- 
