@@ -62,3 +62,17 @@
 - <b>Protocol Encapsulation</b> : Keeps the layer of the networking stack seperate. TCP or UDP data and packet data are simply treated as an IP packet. The 6-byte IP header identifies the type of protocol to use so it can send it to the correct OSI layer. Likewise a <b>Frame</b> or ehternet packet treats the entire IP packet as data. It has a 2 byte header so that the ethernet driver can send to the correct module
 
 ###Sockets
+- <b>Sockets</b> : are an interface to the nertwork that is provided to an application via the OS
+- The socket allows one application to communicate with another
+- <b>Socket System Call</b> : Sockets are assigned an address and port number.
+- <b>Bind</b> : Associates a local network transport address with a socket
+- <b>Listen</b> : a socket used to listen for connections used for TCP or connection oriented protocols
+- <b>Accept</b> : Blocks until a connection is recieved at a listening socket, and at that point assigns a new socket to that connection
+- <b>Connect</b> : Client establishes a connection with a server
+- <b>Compatable</b> : Afer the connection is established the same read and write commands may be used accross systems
+- <b>Close/Shutdown</b> : When the connection is complete and the transfer is done then the close or shutdown system call can be issued to close the connection / socket
+- Every socket has its own <b>Socket Structure</b>.
+- The structure identifies the set of opperations that be performed on it as well as its data send and recieve queries
+- Additionally ids the networking protocol that can be used with it
+- <b>Socket Buffer</b> : As soon as a packet is created it is placed here. Instead of moving the data a pointer to the buffer goes throughout the stack. The data is originally copied from the user space to the socket itself and then transmitted. Enough space is allocated for the data and the headers
+- <b>
