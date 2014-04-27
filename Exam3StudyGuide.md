@@ -161,5 +161,19 @@
         - <b>Something you are</b> : biometric scanner
 
 ###Password Authentication Protocol
-- 
+- Password is associated with each user and is stored within a file
+- If the password matches with the user then you are authorized
+- One problem with this is if someone gets a hold of the password file then they have all the passwords
+- Instead should implement a hash where compare the hash of the password to the hash of the user
+- <b>Dictionary Attacks</b> Hash tables are vulnerable to this because one can just create their own hash of values and hit the hash table with them. From the result they can guess the hash function
+- <b>Salt</b> : extra data that is added to the password prior to hashing it. This makes it much harder to attack the hash because now it hashes to saltpassword as opposed to just the password
+- <b>One time passwords</b> : password is only good for one login and then need a new one to access the system
+
+###Challenge handshake authentication
+- Generates a challenge or random bits , both the client and the server share a secret key, when the client recieves the challenge it computes a hash using its secret and sends back to the server. If the hash matches the servers hash then they are authenticated
+
+###SecureID
+- Two factor authentication that generates one time passwords for users. Relies on a user password and a small computing device called a token. The token generates a new number every 30 seconds. 
+
+###Public Key Authenitcation
         
