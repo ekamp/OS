@@ -116,4 +116,50 @@
 ##Protection and Security
 - <b>Protection</b> : Provides and enforces controlled access of resources to users and processes
 - <b>Security</b> : Set of policies that define authorized access to a system , 
-- <b>Principle of Least Privledge</b> : 
+- <b>Principle of Least Privledge</b> : Any entry can only access files that are essential to completing a task
+- <b>Privlege Seperation</b> : Segment a process into multiple parts , each granted only privleges needed to operate
+- <b>Protection Domain</b> : Every thread operates in this which defines what resource is allowed to access
+- <b>Access Matrix</b> : Model the full system-wide set of access rights, rows represent protection domains whereas columns represent objects
+- <b>Access Control List</b> : Column of an access matrix , which is a list of permission for a certain domain
+- <b>Capability List</b> : Represents a row of an access matrix, an enumeration of all objects in the system and the operations that can be performed on them
+- <b>Discretionary Access Control</b> : Allows the thread to access objects it has permissions to and also pass that information to other processes or write it to other objects
+- <b>Manditory Access Control</b> : where the <b>Centrally Controlled</b> policy restricts the actions of domains on objects
+- <b>Multilevel Secure </b> : Objects are classified in a security hierarchy : unclassified , confidential, secret , and top secret. 
+- The overall policy is not read up no write down
+
+##Cryptography
+- <b>Restricted Cypher</b> : Workings of the cypher are kept secret. Has many flaws, such as leaking the cypher, and reverse engineering the cypher.
+- <b>Symmetric Encryption Algorithm</b> : Uses the same key for encryption and decryption. 
+- <b>Public Key Algorithm</b> : One for encryption and one for decryption
+- <b>One way function</b> : One that can be computed easily in one direction but immpossible in the other
+        - These are useful for digital signatures
+        - <b>Hash Function</b> : One way function whose output is a fixed number of bits
+        - <b>Collision Resistence</b> : Hard to construct text that hashes to a specific hash, and it is hard to construct a text from a hash
+
+###Secure Communication
+- If alice wants to communicate with Bob they need to encode their messages using a key
+- However if Alice then wants to communicate with Syd then she needs another key
+- All these keys form a key explosion, a system with n users needs n<sup>2</sup> keys
+- <b>Diffie-Hellman exponential key exchange </b> Each party generates a private and public key or really numbers
+        - Uses one way function where Alice can compute a common key using Bob's public key and her private key
+
+###Session Keys
+- Random key used for communication during a single communication session
+- This is good because if the key is ever take it will not allow the user to have access for long
+- <b>Hybrid Crypto System</b> : uses public key cryptography to send a session key secrurely
+        - System generates a random session key encripting it with the users public key
+        - The user decripts using they private key and then uses symmetric for communication
+        - Higher performance
+        - Ease of communication
+
+- <b>Digital Signature</b> : Encrypting a hash of a message with the creators private key
+
+##Authentication
+- Three factors of authentication
+        - <b>Something you have</b> : Card key / ID card
+        - <b>Something you know</b> : Password
+        - <b>Something you are</b> : biometric scanner
+
+###Password Authentication Protocol
+- 
+        
