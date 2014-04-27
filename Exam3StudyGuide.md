@@ -92,14 +92,14 @@
 - <b>Remote Access Model</b> : Individual requests are sent to the remote server as remote procedures
 
 ##Network File System Examples
-##NSF
+###NSF
 - Server does not maintain state therefore there is no need for remote open or close procedures.
 - This works well is faulty environments , since there is no state to restore if the server crashes
 - To improve performance the client requests a large block of data performing a read ahead reading future blocks ahead of time
 - NFS is ambiguous because the server and clients do not know what blocks each one of the clients have cahced so far
 - File locking was not possible because it is stateless however a seperate file manager was implemented later on
     
-##AFS
+###AFS
 - Improvement of NFS to support file sharing over a large scale
 - Introduced the use of a large cache on the client side to hold remote files for a long time. (Long term caching)
 - This supports the file upload and download model
@@ -114,4 +114,6 @@
 - Uses the remote access model
 
 ##Protection and Security
-- 
+- <b>Protection</b> : Provides and enforces controlled access of resources to users and processes
+- <b>Security</b> : Set of policies that define authorized access to a system , 
+- <b>Principle of Least Privledge</b> : 
