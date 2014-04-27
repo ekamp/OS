@@ -176,4 +176,48 @@
 - Two factor authentication that generates one time passwords for users. Relies on a user password and a small computing device called a token. The token generates a new number every 30 seconds. 
 
 ###Public Key Authenitcation
-        
+- <b>Nonce</b> Random bunch of bits that is generated on the fly
+- If a user sends a nonce and encrypts it with a private key giving the results to the other party, the other party can decrypt using the public key. If the decryption matches then you must be the correct party since you have the correct private key.
+- Used in SSL
+
+###Digital Certificates
+- Must make sure that ones public key really is their public key and not an imposters
+- <b>X.509 digital certs</b> : A data structure that contains user data and a users public key
+        - Structure also contains a signature and the certification authority
+- One can validate the Certification if one has the CA's public key
+- If the data within the certification and the CA's public key in your hash is a match then you know its trustworthy
+
+##Security
+- Most security attacks happen because of bugs in a system
+- <b>Dictionary Attack</b> : When you go through a dictionary of words and names and test them as potential passwords. This becomes easier if you somehow get the hash password you are looking for. Can perform the search on your own machine instead of using the login
+- <b>Social Engineering Attack</b> : Convince a persion to give you the password. 
+- <b>Trojan Horse</b> : program that masquerades as a legit program and tricks you into thinking you are interacting with a trustworthy program
+- <b>Phishing</b> : Email that gets a user to expose passwords or information
+- <b>Buffer Overflow</b> : Software expects to read a small amount of data into the buffer but never actually checks the size and reads in a large amount of data.
+    - Now instead of writting to just the buffer it writes into memory and over the return address
+    - If this happens the return address can get modified with the address of the other code which will get ex as soon as it returns. This is called <b>stack smashing</b>
+- <b>Return Oriented Programming</b> : Attacker finds some useful bits of code, of which all contain the end with return addresses. Once the function returns it returns to the address of the attacker and the attacker now has the information. Attacker basically adds return addresses to the stack in hopes of getting information
+- <b>Stack Canaries</b> : Compiler places random data onto the stack. Then the buffer is allocated. If the canary is not there at compile time then you know that the buffer overflow occured.
+- <b>Address Space Layout Randomization</b> : Compiler randomly aranges where to put exact addresses. Require pos independent code however denies the attacker access to libs
+- <b>Rootkit</b> : Code that hides the presence of a user. Sometimes this is done by replacing commands
+- <b>Four A's of Security</b>
+        - <b>Authenitcation</b> : Binding the identity to the user
+        - <b>Authorization</b> : What access is the user permitted
+        - <b>Accounting</b> : Logging system activities for breaches
+        - <b>Auditing</b> : Inspecting the software and configuration for sec flaws
+
+###Signed Software
+- Ensure that software has not been tampered with
+- Each memory page contains a signature that is then verified with public private key hashes between the software and our OS
+
+###Sandboxes
+- An environment designed for running programs while restricting their access to certain resources. 
+- Simplest form of this is chroot system call in unix systems. This changes the root directory for the filesystem
+        - This form of sandboxing is call chroot_jail, not able to access any files or processes outside the jail
+        - However this does not restrict network operations
+- <b>Rule Based Sandbox</b> : Sets finer grain policies on what an application can do. 
+- Popular examples of sandboxes are the JVM and Apple Sand Box
+- There are three parts to the JVM sandbox
+        - <b>Byte Code Verifier</b> : Ensures that the code looks like verified java byte code with no attempts to illigally convert or force pointers
+        - <b>Class Loader</b> : Enforces restriction on whether a program is able to run additional applets
+        - <b>Security Manager</b> : invoked to provide run time vertification of whether a program has rights to invoke a method
