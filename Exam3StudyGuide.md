@@ -31,4 +31,25 @@
 - <b>Loop Device</b> : Device that is given a file name and creates a block device interface to that file. These file systems are formatted on top of block devices
 
 ###Special File Systems
-- 
+- <b>Process File System</b> : Creates a file system view of processes and other aspects of the kernal and each process is presented as a directory. Aspects of the process are presented as files within the filesystem
+- <b>Device File System</b> : Presents all the kernals's devices as files so that one does not need to create and remove them from the /dev folder in the physical file system
+- <b>FUSE</b> : Alows one to make user level file systems. VFS layer sends a request to FUSE which sends to a user level process that interprets the responce.
+
+##Client Server Networking
+- <b>Baseband</b> : One node transmits at a time, however that node gets full bandwith of the netword at that time
+- <b>Broadband</b> : Has its bandwidth split over a frequency or multiple channels. Cable is an example of this. However cable internet uses a form of baseband where there is an up stream channel and downstream channel, aming it baseband within broadband
+
+###Baseband Sharing
+- <b>Circuit Switching</b> : The network is split into short time slots in which each node can use the network, termed TDM or time division multiplexing.
+- This provides guarenteed bandwidth and letency however does not use the network efficently
+- Public telephone network was an example of this
+- <b>Packet Switching</b> : Uses varaible length time slots, Data is split in variable sized packets. Cannot guarentee constant bandwidth or latency, ethernet is an example of this.
+
+###OSI Layers
+- <b>Data Link Layer</b> : Transfers data within a physical local area network.
+- <b>Network Layer</b> : Manages routing of packets / data
+- <b>Transport Layer </b> : Manager communication of data from one application to another
+- <b>Presentation Layer</b> : Manages the representation of data and handles any conversion of data types
+
+###IP Networking
+- <b>Internet Protocol</b>
