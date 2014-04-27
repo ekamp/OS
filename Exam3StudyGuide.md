@@ -75,4 +75,21 @@
 - The structure identifies the set of opperations that be performed on it as well as its data send and recieve queries
 - Additionally ids the networking protocol that can be used with it
 - <b>Socket Buffer</b> : As soon as a packet is created it is placed here. Instead of moving the data a pointer to the buffer goes throughout the stack. The data is originally copied from the user space to the socket itself and then transmitted. Enough space is allocated for the data and the headers
-- <b>
+- <b>Abstract Device Interface</b> : Sits below the networking layers and above the actual device drivers.
+    - Contains functions for Initializing devices , sending data , allocating socket buffers for recieving data
+- <b>Network device driver</b> : (Ethernet or 802.11) (Interacts with the physical network) Transmitting data out to the network and grabbing data from the hardware
+- <b>Linux NAPI</b> : disables network device interrupts when a packet is recieved and reverts to periotic polling. If a poll yeilds no data then the interrupts are reenabled.
+
+###Remote Procedure Calls
+- Remote Procedure Calls are a programming language construct (Provided by the compiler) as opposed to an OS construct such as packets
+- <b>Stub Functions</b> : creates the illusion of a remote procedure call
+- <b>Client Stub</b> : is the same interface as the desired remote procedure
+    - Its function is to take the procedures , turn them into a network message, send them to the server , await for a reply, decrypt the message and return to the cleint
+- <b>Server Stub</b> : Registers the service , and awaits incoming requests for running the remote procedure.
+
+##Network File Systems
+- <b>Download Upload Model</b> : An entire file is downloaded onto the machine if the file is opened. If the file is modified then it is uploaded.
+- <b>Remote Access Model</b> : Individual requests are sent to the remote server as remote procedures
+
+##Network File System Examples
+- <b>NSF</b>
