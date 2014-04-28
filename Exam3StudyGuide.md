@@ -127,6 +127,7 @@
 - <b>Privlege Seperation</b> : Segment a process into multiple parts , each granted only privleges needed to operate
 - <b>Protection Domain</b> : Every thread operates in this which defines what resource is allowed to access
 - <b>Access Matrix</b> : Model the full system-wide set of access rights, rows represent protection domains whereas columns represent objects
+- <b>setuid</b> : Sets the user's ID so that they can run a certain executable file
 - <b>Access Control List</b> : Column of an access matrix , which is a list of permission for a certain domain
 - <b>Capability List</b> : Represents a row of an access matrix, an enumeration of all objects in the system and the operations that can be performed on them
 - <b>Discretionary Access Control</b> : Allows the thread to access objects it has permissions to and also pass that information to other processes or write it to other objects
