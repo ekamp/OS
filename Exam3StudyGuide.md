@@ -69,6 +69,7 @@
 - <b>Listen</b> : a socket used to listen for connections used for TCP or connection oriented protocols
 - <b>Accept</b> : Blocks until a connection is recieved at a listening socket, and at that point assigns a new socket to that connection
 - <b>Connect</b> : Client establishes a connection with a server
+- <b>Socket</b> : Opens a TCP network connection
 - <b>Compatable</b> : Afer the connection is established the same read and write commands may be used accross systems
 - <b>Close/Shutdown</b> : When the connection is complete and the transfer is done then the close or shutdown system call can be issued to close the connection / socket
 - Every socket has its own <b>Socket Structure</b>.
