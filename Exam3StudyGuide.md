@@ -85,10 +85,14 @@
 
 ###Remote Procedure Calls
 - Remote Procedure Calls are a programming language construct (Provided by the compiler) as opposed to an OS construct such as packets
+- <b>Stub</b> : Used for converting parameters passed from an RPC
 - <b>Stub Functions</b> : creates the illusion of a remote procedure call
 - <b>Client Stub</b> : is the same interface as the desired remote procedure
     - Its function is to take the procedures , turn them into a network message, send them to the server , await for a reply, decrypt the message and return to the cleint
+    - Convert parameters used in a function call and deconversion of passed results
 - <b>Server Stub</b> : Registers the service , and awaits incoming requests for running the remote procedure.
+        - Deconversion of parameters passed by the client and conversion of results passed to the client
+- <b>Interface Definition Language</b> : Used to describe software component interfaces.
 
 ##Network File Systems
 - <b>Download Upload Model</b> : An entire file is downloaded onto the machine if the file is opened. If the file is modified then it is uploaded.
