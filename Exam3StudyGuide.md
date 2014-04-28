@@ -192,6 +192,8 @@
 - <b>Dictionary Attack</b> : When you go through a dictionary of words and names and test them as potential passwords. This becomes easier if you somehow get the hash password you are looking for. Can perform the search on your own machine instead of using the login
 - <b>Social Engineering Attack</b> : Convince a persion to give you the password. 
 - <b>Trojan Horse</b> : program that masquerades as a legit program and tricks you into thinking you are interacting with a trustworthy program
+- <b>Virus</b> : Code is attached to another program or script and is not run on its own.
+- <b>Virus Detection</b> : Search for a string of bits that may be a unique signature of the virus, however sometimes viruses change their code or mutate based on the system they get into.
 - <b>Phishing</b> : Email that gets a user to expose passwords or information
 - <b>Buffer Overflow</b> : Software expects to read a small amount of data into the buffer but never actually checks the size and reads in a large amount of data.
     - Now instead of writting to just the buffer it writes into memory and over the return address
