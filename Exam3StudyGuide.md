@@ -80,6 +80,8 @@
     - Contains functions for Initializing devices , sending data , allocating socket buffers for recieving data
 - <b>Network device driver</b> : (Ethernet or 802.11) (Interacts with the physical network) Transmitting data out to the network and grabbing data from the hardware
 - <b>Linux NAPI</b> : disables network device interrupts when a packet is recieved and reverts to periotic polling. If a poll yeilds no data then the interrupts are reenabled.
+- <b>Abstract Interface Device</b> : Provides higher level software to network devices
+
 
 ###Remote Procedure Calls
 - Remote Procedure Calls are a programming language construct (Provided by the compiler) as opposed to an OS construct such as packets
